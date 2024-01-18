@@ -1,7 +1,7 @@
 import Tea from "./tea"
 
 function App() {
- 
+ const username = "Drinking tea"
   return (
     <>
     <Tea />
