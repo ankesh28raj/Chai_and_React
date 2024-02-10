@@ -1,5 +1,5 @@
 import conf from '../conf/conf.js';
-import {Client, Account, ID, Databases} from "appwrite";
+import {Client, ID, Databases, Storage, Query} from "appwrite";
 
 export class Service{
     client = new Client();
@@ -30,7 +30,8 @@ export class Service{
                 }
             )
         } catch (error) {
-            throw error
+            console.log("Appwrite serive :: createPost :: error", error);
+            // throw error
             
         }
     }
@@ -50,7 +51,8 @@ export class Service{
             
             )
         } catch (error) {
-            throw error
+            console.log("Appwrite serive :: createPost :: error", error);
+            // throw error
             
         }
     }
@@ -65,7 +67,8 @@ export class Service{
             return true
         } 
         catch (error) {
-            throw error
+            // throw error
+            console.log("Appwrite serive :: createPost :: error", error);
             return false
             
         }
@@ -80,7 +83,8 @@ export class Service{
 
             )
         } catch (error) {
-            throw error
+            // throw error
+            console.log("Appwrite serive :: createPost :: error", error);
             return false
         }
     }
@@ -95,7 +99,8 @@ export class Service{
                 queries
             )
          } catch (error) {
-            throw error
+            console.log("Appwrite serive :: createPost :: error", error);
+            // throw error
             return false
          }
     }
@@ -108,7 +113,8 @@ export class Service{
                 file
             )
         } catch (error) {
-            throw error
+            // throw error
+            console.log("Appwrite serive :: createPost :: error", error);
             return false
         }
     }
@@ -119,8 +125,10 @@ export class Service{
                 conf.appwriteBucketId,
                 fileId
             )
+            return true
         } catch (error) {
-            throw error
+            // throw error
+            console.log("Appwrite serive :: createPost :: error", error);
             return false
         }
     }

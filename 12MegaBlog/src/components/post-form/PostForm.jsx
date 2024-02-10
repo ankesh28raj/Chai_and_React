@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { useForm } from 'react-hook-form'
-import { Button, Input, Select, RTE } from '../index'
+import { Button, Input, Select, RTE } from '..'
 import appwriteService from '../../appwrite/config'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -17,11 +17,11 @@ export default function PostForm({ post }) {
         })
 
     const navigate = useNavigate()
-    const userData = useSelector(state => state.user.userData)
+    const userData = useSelector(state => state.auth.userData)
 
     const submit = async (data) => {
         if (post) {
-            data.image[0] ? appwriteService.uploadFile(data.image[0]) : null
+            const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null
 
             if (file) {
                 appwriteService.deleteFile(post.featuredImage)
@@ -41,7 +41,7 @@ export default function PostForm({ post }) {
             if (file) {
                 const fileId = file.$id
                 data.featuredImage = fileId
-                const dbPost = await appwriteService.createPost({ ...data, userId })
+                const dbPost = await appwriteService.createPost({ ...data, userId : userData.$id})
 
                 if (dbPost) {
                     navigate(`/post/${dbPost.$id}`)
